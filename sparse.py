@@ -1,3 +1,4 @@
+import spams
 import scipy, numpy, sklearn
 from scipy import misc
 # It can make the computation much faster if instead of * we can predetermine the specific numpy
@@ -45,7 +46,6 @@ print 'set' '''
 
 
 #Concatenate first
-
 # PATCH
 # Arbitrarily assign 3 at a time for the patch selection
 # Note: This needs to be converted as a callable function for both high and low
