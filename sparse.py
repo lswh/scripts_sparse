@@ -32,41 +32,41 @@ for line in highxyz:
     zhighinitial.append(float(z))
 highxyz.close()
 
-
 for line in lowxyz:
     x,y,z=line.split()
     xlowinitial.append(float(x))
     ylowinitial.append(float(y))
     zlowinitial.append(float(z))
 
-zlowinitial = numpy.asmatrix(zlowinitial)
-print zlowinitial
+#zlowinitial = numpy.asmatrix(zlowinitial)
+#print zlowinitial
+
+wholepatchrowhi = []
+wholepatchrowlo = []
+patchpointshi = []
+patchpointslo = []
+
 
 #Step 1: Declare the necessary functions for both high reso and low reso
-#PatchSelectFunction -- input ang Z values
-def PathSelect():
-    
+#PatchSelectFunction -- input for thing is initial z value, taguan naman for wholepatchrowhigh or low
+#and overlap points either patchpointshi or patchpointslo
+def PatchSelect(thing, taguan, ovrlp):
+    for i in range(0, (len(thing)-2), 2):
+        taguan.append(thing[i])
+        taguan.append(thing[i+1])
+        taguan.append(thing[i+2])       
+        ovrlp.append(thing[i+2])
 
+#Let's Apply the function here:
+PatchSelect(zhighinitial, wholepatchrowhi, patchpointshi)
+PatchSelect(zlowinitial, wholepatchrowlo, patchpointslo)
 
+zhimatrix = numpy.asmatrix(wholepatchrowhi).transpose()
+zlowmatrix = numpy.asmatrix(wholepatchrowlo).transpose()
 
-"""
-# Arbitrarily assign 3 at a time for the patch selection
-# Note: This needs to be converted as a callable function for both high and low
-for i in range(0, len(blockimghigh)):
-    for j in range(0, len(blockimghigh)-2):
-        h=blockimghigh[i,j]
-        y.append(h)
-        h=blockimghigh[i,j+1]
-        y.append(h)
-        h=blockimghigh[i,j+2]
-        y.append(h)
-        yp.append(h)
-        j+=1
-    i+=1
-
-#PatchSimplification -- input ang matrix from PatchSelectFunction
-y = numpy.asmatrix(y)
-y = y.transpose()
+"""# PatchSimplification -- input ang matrix from PatchSelectFunction
+# y = numpy.asmatrix(y)
+# y = y.transpose()
 
 #Step 2: Dictionary - Acquire sampled atoms from input DEM file using Yang et al's Method(2008)
 #Note for DictionaryHigh -- downsampled using bicubic interpolation
