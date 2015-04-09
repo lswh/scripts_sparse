@@ -1,16 +1,23 @@
-import spams
-import scipy, numpy, sklearn
+import scipy, numpy, sklearn, spams, osgeo
 from osgeo import gdal
 from osgeo.gdalconst import *
 from scipy import misc
-
-
 
 #Formal input image is GeoTIFF. Extract DEM from both High Reso and Low Reso GeoTIFF files. 
 # GDAL commandline used to translate GeoTIFF input to DEM (gdal_translate command)
 # The specific command used for input data was: gdal_translate -of XYZ elevation.tif elevation.xyz
 
-#Step 0.5
+#Step 0.5 Get the values from XYZ files. 
+#gdal warp to make pixel number of LiDAR equal to pixel number of SAR
+# Command: 
+
+
+#yhighinitial = 
+#ylowinitial = 
+
+#Step 1: Functions
+
+
 
 
 #Step 3: Patch Selection writen into a Column Matrix
