@@ -7,47 +7,27 @@ from scipy import misc
 # GDAL commandline used to translate GeoTIFF input to DEM (gdal_translate command)
 # The specific command used for input data was: gdal_translate -of XYZ elevation.tif elevation.xyz
 
-#Step 0.5 Get the values from XYZ files. 
-#gdal warp to make pixel number of LiDAR equal to pixel number of SAR
-# Command: 
+#Step 0.5 Get the values from XYZ files and Store the Essential Variables/Lists/Matrices Here. 
+#gdal warp to make pixel number of LiDAR equal to pixel number of SAR. Used average command
+# gdalwarp -tr 9 9 -r average CDO_LiDAR_500x500.tif DownsampledLiDAR.tif
+# Should strictly be 9.08 but I did not try that yet. 
 
+highxyz = ""
+lowxyz = ""
 
-#yhighinitial = 
-#ylowinitial = 
+highxyz = open(filename, "r")
+highxyz = open(filename, "r")
 
-#Step 1: Functions
+#xhighinitial =
+#xlowinitial =
+#yhighinitial =
+#ylowinitial =
+#zhighinitial = 
+#zlowinitial = 
 
+#Step 1: Declare the necessary functions for both high reso and low reso
 
-
-
-#Step 3: Patch Selection writen into a Column Matrix
-#Initialize y with tilde here as a blank 2Dimensional list
-y = []
-#Y Patch of Overlap
-yp = []
-
-
-# Checker for final values. Just to see if end of list has same values produced.
-'''h=blockimghigh[15,12]
-y.append(h)
-h=blockimghigh[15,13]
-y.append(h)
-h=blockimghigh[15,14]
-y.append(h)
-print y
-print 'set'
-h=blockimghigh[15,13]
-y.append(h)
-h=blockimghigh[15,14]
-y.append(h)
-h=blockimghigh[15,15]
-y.append(h)
-print y
-print 'set' '''
-
-
-#Concatenate first
-# PATCH
+#PatchSelectFunction -- input ang Z values
 # Arbitrarily assign 3 at a time for the patch selection
 # Note: This needs to be converted as a callable function for both high and low
 for i in range(0, len(blockimghigh)):
@@ -62,30 +42,23 @@ for i in range(0, len(blockimghigh)):
         j+=1
     i+=1
 
-
-# OUTPUT HERE: yhigh and ylow na columnar 
+#PatchSimplification -- input ang matrix from PatchSelectFunction
 y = numpy.asmatrix(y)
 y = y.transpose()
 
-
-# Co-registration 
-'''##STAGE 2: SPARSE
-
-#Dictionary is here. Initialized via random sampling. Question: How do I randomize this??? 
+#Step 2: Dictionary - Acquire sampled atoms from input DEM file using Yang et al's Method(2008)
+#Note for DictionaryHigh -- downsampled using bicubic interpolation
 Dhigh = array[[]] 
 Dlow = array[[]]
-# P is the operator getting the overlap.
-# Dtilde = 1st row sqrt(wlow)*Dlow, 2nd row sqrt(whigh)*Dhigh, 3rd row sqrt(beta)*P*Dhigh
-Dtilde = array[[]]
-#values of this will depend on Debbie's recent output if any n by k matrix
-tau = 7 
-#ideal values for tau as per lit is between 7 to 15, tau being number of nonzero terms, so you can
-# change this
+
+#Step 3: Incorporate the Weights - this is still a little hazy
 #Get residuals from slope and roughness and predicted values. Normalize from a scale of 1 to 100. 
-#This will be used as the content of the wlow and whigh.
 wlow = array[[]]
 whigh = array[[]]
 
+#Step 5: Matrix Operations under Initial Conditions
+# Dtilde = 1st row sqrt(wlow)*Dlow, 2nd row sqrt(whigh)*Dhigh, 3rd row sqrt(beta)*P*Dhigh
+# tau equal to 7, but ideal between range of 7 to 15. 
 # beta values 0.5 to 1.5
 
 # Initialize alpha sparse vector 
