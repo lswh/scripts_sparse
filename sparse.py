@@ -4,6 +4,10 @@ from scipy import misc
 # It can make the computation much faster if instead of * we can predetermine the specific numpy
 # packages required by the script.
 
+
+#Formal input image is GeoTIFF. Extract DEM from both High Reso and Low Reso GeoTIFF files. 
+# GDAL commandline used to translate GeoTIFF input to DEM (gdal_translate command)
+
 #PAGE 1 of REFERENCE DOCUMENT
 # Step 1 Preprocess the Input Image
 # Numpy Version reference: http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html
