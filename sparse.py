@@ -12,22 +12,44 @@ from scipy import misc
 # gdalwarp -tr 9 9 -r average CDO_LiDAR_500x500.tif DownsampledLiDAR.tif
 # Should strictly be 9.08 but I did not try that yet. 
 
-highxyz = ""
-lowxyz = ""
+highxyz = "56by56LIDARSAMPLE.xyz"
+lowxyz = "SARELEVATION.xyz"
 
-highxyz = open(filename, "r")
-highxyz = open(filename, "r")
+highxyz = open(highxyz)
+lowxyz = open(lowxyz)
 
-#xhighinitial =
-#xlowinitial =
-#yhighinitial =
-#ylowinitial =
-#zhighinitial = 
-#zlowinitial = 
+xhighinitial = []
+xlowinitial = []
+yhighinitial = []
+ylowinitial = []
+zhighinitial = []
+zlowinitial = []
+
+for line in highxyz:
+    x,y,z=line.split()
+    xhighinitial.append(float(x))
+    yhighinitial.append(float(y))
+    zhighinitial.append(float(z))
+highxyz.close()
+
+
+for line in lowxyz:
+    x,y,z=line.split()
+    xlowinitial.append(float(x))
+    ylowinitial.append(float(y))
+    zlowinitial.append(float(z))
+
+zlowinitial = numpy.asmatrix(zlowinitial)
+print zlowinitial
 
 #Step 1: Declare the necessary functions for both high reso and low reso
-
 #PatchSelectFunction -- input ang Z values
+def PathSelect():
+    
+
+
+
+"""
 # Arbitrarily assign 3 at a time for the patch selection
 # Note: This needs to be converted as a callable function for both high and low
 for i in range(0, len(blockimghigh)):
@@ -78,7 +100,7 @@ for k=1:
 	for i=1 in len(Dtilde):
         pass
 		return Dtildemaxcorr'''
-
+"""
 
 
 
