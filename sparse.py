@@ -64,12 +64,10 @@ PatchSelect(zlowinitial, wholepatchrowlo, patchpointslo)
 zhimatrix = numpy.asmatrix(wholepatchrowhi).transpose()
 zlowmatrix = numpy.asmatrix(wholepatchrowlo).transpose()
 
-"""# PatchSimplification -- input ang matrix from PatchSelectFunction
-# y = numpy.asmatrix(y)
-# y = y.transpose()
 
 #Step 2: Dictionary - Acquire sampled atoms from input DEM file using Yang et al's Method(2008)
-#Note for DictionaryHigh -- downsampled using bicubic interpolation
+#Note for DictionaryHigh -- downsampled using bicubic interpolation katulad nung sa Literature Ref
+#
 Dhigh = array[[]] 
 Dlow = array[[]]
 
