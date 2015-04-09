@@ -1,27 +1,17 @@
 import spams
 import scipy, numpy, sklearn
+from osgeo import gdal
+from osgeo.gdalconst import *
 from scipy import misc
-# It can make the computation much faster if instead of * we can predetermine the specific numpy
-# packages required by the script.
+
 
 
 #Formal input image is GeoTIFF. Extract DEM from both High Reso and Low Reso GeoTIFF files. 
 # GDAL commandline used to translate GeoTIFF input to DEM (gdal_translate command)
+# The specific command used for input data was: gdal_translate -of XYZ elevation.tif elevation.xyz
 
-#PAGE 1 of REFERENCE DOCUMENT
-# Step 1 Preprocess the Input Image
-# Numpy Version reference: http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html
-# datahighnumpyarray =  numpy.loadtxt(inputfilehigh.txt, delimiter=None)
-#The variables datahigh and datalow will have an appearance similar to this: [[1,2,3,4,5],[4,5,6,
-#7, 8],[7,8,9,10,11], [1,2,3,4,5], [5,6,7,8,9]] for a 5 X 5 matrix
+#Step 0.5
 
-#Temporary use Lena standard testing image just to have 2D arrays that are equal in size
-#256 elements here  
-img=scipy.misc.lena()
-blockimglow=img[0:16,0:16]
-blockimghigh=img[17:33,17:33]
-blockimghigh=numpy.asmatrix(blockimghigh)
-blockimglow=numpy.asmatrix(blockimglow)
 
 #Step 3: Patch Selection writen into a Column Matrix
 #Initialize y with tilde here as a blank 2Dimensional list
