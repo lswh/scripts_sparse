@@ -86,7 +86,7 @@ alphanaught = [[]]
 # ytilde = 1st row sqrt wlow*ylow, 2nd row sqrt whigh*yhigh, 3rd row sqrt(beta)*yp of overlap
 # ytilde = initialized residual 
 
-# Gamma = null array
+"""# Gamma = null array
 # Set iteration counter k = 1 
 #Step 5 ITERATE AFTER INITIALIZATION
 # min |Dtilde*alpha-ytilde| + tau*|alpha|
