@@ -1,4 +1,4 @@
-import scipy, numpy, sklearn, spams, osgeo
+import time, scipy, numpy as np, sklearn, spams, osgeo
 from osgeo import gdal
 from osgeo.gdalconst import *
 from scipy import misc
@@ -38,7 +38,7 @@ for line in lowxyz:
     ylowinitial.append(float(y))
     zlowinitial.append(float(z))
 
-#zlowinitial = numpy.asmatrix(zlowinitial)
+#zlowinitial = np.asmatrix(zlowinitial)
 #print zlowinitial
 
 wholepatchrowhi = []
@@ -61,20 +61,20 @@ def PatchSelect(thing, taguan, ovrlp):
 PatchSelect(zhighinitial, wholepatchrowhi, patchpointshi)
 PatchSelect(zlowinitial, wholepatchrowlo, patchpointslo)
 
-zhimatrix = numpy.asmatrix(wholepatchrowhi).transpose()
-zlowmatrix = numpy.asmatrix(wholepatchrowlo).transpose()
-
+zhimatrix = np.asmatrix(wholepatchrowhi).transpose()
+zlowmatrix = np.asmatrix(wholepatchrowlo).transpose()
 
 #Step 2: Dictionary - Acquire sampled atoms from input DEM file using Yang et al's Method(2008)
 #Note for DictionaryHigh -- downsampled using bicubic interpolation katulad nung sa Literature Ref
 #
-Dhigh = array[[]] 
-Dlow = array[[]]
+#Dhigh = array[[]] 
+#Dlow = array[[]]
+
 
 #Step 3: Incorporate the Weights - this is still a little hazy
 #Get residuals from slope and roughness and predicted values. Normalize from a scale of 1 to 100. 
-wlow = array[[]]
-whigh = array[[]]
+#wlow = array[[]]
+#whigh = array[[]]
 
 #Step 5: Matrix Operations under Initial Conditions
 # Dtilde = 1st row sqrt(wlow)*Dlow, 2nd row sqrt(whigh)*Dhigh, 3rd row sqrt(beta)*P*Dhigh
